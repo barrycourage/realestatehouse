@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DreamHome Realty - Find Your Perfect Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <i class="fas fa-home"></i>
+            <span>DreamHome Realty</span>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#properties" class="nav-link">Properties</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Find Your Dream Home</h1>
+        <p>
+          Discover the perfect property that matches your lifestyle and budget
+        </p>
+        <div class="search-container">
+          <div class="search-box">
+            <input
+              type="text"
+              id="location-search"
+              placeholder="Enter location..."
+            />
+            <select id="property-type">
+              <option value="">Property Type</option>
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
+              <option value="condo">Condo</option>
+              <option value="villa">Villa</option>
+            </select>
+            <select id="price-range">
+              <option value="">Price Range</option>
+              <option value="0-200000">$0 - $200,000</option>
+              <option value="200000-500000">$200,000 - $500,000</option>
+              <option value="500000-1000000">$500,000 - $1,000,000</option>
+              <option value="1000000+">$1,000,000+</option>
+            </select>
+            <button class="search-btn" onclick="searchProperties()">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="properties">
+      <div class="container">
+        <h2 class="section-title">Featured Properties</h2>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="house">Houses</button>
+          <button class="filter-btn" data-filter="apartment">Apartments</button>
+          <button class="filter-btn" data-filter="condo">Condos</button>
+          <button class="filter-btn" data-filter="villa">Villas</button>
+        </div>
+        <div class="properties-grid" id="properties-grid">
+          <!-- Properties will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3>Property Sales</h3>
+            <p>
+              Expert guidance in buying and selling residential and commercial
+              properties
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-key"></i>
+            </div>
+            <h3>Property Rentals</h3>
+            <p>
+              Find the perfect rental property or manage your investment
+              properties
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Property Valuation</h3>
+            <p>Professional property appraisal and market analysis services</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Investment Consulting</h3>
+            <p>Strategic advice for real estate investment opportunities</p>
+          </div>
+          <div class="service-card">
+  <div class="service-icon">
+    <i class="fas fa-building"></i>
+  </div>
+  <h3>Property Management</h3>
+  <p>
+    Comprehensive property management services for landlords and property investors
+  </p>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>About DreamHome Realty</h2>
+            <p>
+              With over 15 years of experience in the real estate industry,
+              DreamHome Realty has helped thousands of families find their
+              perfect homes. Our team of dedicated professionals provides
+              personalized service and expert guidance throughout your real
+              estate journey.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <h3>2,500+</h3>
+                <p>Properties Sold</p>
+              </div>
+              <div class="stat">
+                <h3>98%</h3>
+                <p>Client Satisfaction</p>
+              </div>
+              <div class="stat">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Real Estate Team"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Address</h4>
+                <p>123 Real Estate Ave, City, State 12345</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>+2349027033883</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>berryflezzyfrosh@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Hours</h4>
+                <p>Mon - Fri: 9AM - 6PM<br />Sat - Sun: 10AM - 4PM</p>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Your Phone"
+              />
+            </div>
+            <div class="form-group">
+              <select id="subject" name="subject" required>
+                <option value="">Select Subject</option>
+                <option value="buying">Buying Property</option>
+                <option value="selling">Selling Property</option>
+                <option value="renting">Renting Property</option>
+                <option value="valuation">Property Valuation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Your Message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="logo">
+              <i class="fas fa-home"></i>
+              <span>DreamHome Realty</span>
+            </div>
+            <p>
+              Your trusted partner in finding the perfect home. We make real
+              estate dreams come true.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#properties">Properties</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+  <h4>Services</h4>
+  <ul>
+    <li><a href="#services" onclick="scrollToService('property-sales')">Property Sales</a></li>
+    <li><a href="#services" onclick="scrollToService('property-rentals')">Property Rentals</a></li>
+    <li><a href="#services" onclick="scrollToService('property-management')">Property Management</a></li>
+    <li><a href="#services" onclick="scrollToService('investment-consulting')">Investment Consulting</a></li>
+    <li><a href="#services" onclick="scrollToService('property-valuation')">Property Valuation</a></li>
+  </ul>
+</div>
+
+          <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Subscribe to get updates on new properties and market trends.</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 DreamHome Realty. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Property Modal -->
+    <div id="property-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-body">
+          <!-- Property details will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
