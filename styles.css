@@ -577,14 +577,13 @@ h2 {
 }
 
 .chat-input-container {
-    position: absolute;
-    bottom: 0px;
     background: #2a3942;
     padding: 15px 20px;
     display: flex;
     align-items: center;
     gap: 10px;
     width: 100%;
+    margin-bottom: 80px;
 }
 
 .attachment-btn {
