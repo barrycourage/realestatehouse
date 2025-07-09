@@ -1,337 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DreamHome Realty - Find Your Perfect Home</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="nav-container">
-          <div class="logo">
-            <i class="fas fa-home"></i>
-            <span>DreamHome Realty</span>
-          </div>
-          <ul class="nav-menu">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#properties" class="nav-link">Properties</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-          </ul>
-          <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="whatsapp-logo">
+                <svg viewBox="0 0 24 24" width="80" height="80">
+                    <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516"/>
+                </svg>
+            </div>
+            <h1>Welcome to WhatsApp</h1>
+            <p class="subtitle">Please confirm your country code and enter your phone number.</p>
+            
+            <div class="phone-input-container">
+                <div class="country-selector">
+                    <select id="country-code">
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+234">🇳🇬 +234</option>
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+55">🇧🇷 +55</option>
+                        <option value="+7">🇷🇺 +7</option>
+                    </select>
+                </div>
+                <input type="tel" id="phone-number" placeholder="Phone number" maxlength="15">
+            </div>
+            
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password (for existing users)" maxlength="50">
+            </div>
+            
+            <button id="next-btn" class="next-button" disabled>NEXT</button>
+            
+            <p class="terms">By tapping "Next", you agree to our Terms of Service and Privacy Policy.</p>
         </div>
-      </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Find Your Dream Home</h1>
-        <p>
-          Discover the perfect property that matches your lifestyle and budget
-        </p>
-        <div class="search-container">
-          <div class="search-box">
-            <input
-              type="text"
-              id="location-search"
-              placeholder="Enter location..."
-            />
-            <select id="property-type">
-              <option value="">Property Type</option>
-              <option value="house">House</option>
-              <option value="apartment">Apartment</option>
-              <option value="condo">Condo</option>
-              <option value="villa">Villa</option>
-            </select>
-            <select id="price-range">
-              <option value="">Price Range</option>
-              <option value="0-200000">$0 - $200,000</option>
-              <option value="200000-500000">$200,000 - $500,000</option>
-              <option value="500000-1000000">$500,000 - $1,000,000</option>
-              <option value="1000000+">$1,000,000+</option>
-            </select>
-            <button class="search-btn" onclick="searchProperties()">
-              <i class="fas fa-search"></i> Search
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Properties -->
-    <section id="properties" class="properties">
-      <div class="container">
-        <h2 class="section-title">Featured Properties</h2>
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="house">Houses</button>
-          <button class="filter-btn" data-filter="apartment">Apartments</button>
-          <button class="filter-btn" data-filter="condo">Condos</button>
-          <button class="filter-btn" data-filter="villa">Villas</button>
-        </div>
-        <div class="properties-grid" id="properties-grid">
-          <!-- Properties will be loaded here by JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-      <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-home"></i>
-            </div>
-            <h3>Property Sales</h3>
-            <p>
-              Expert guidance in buying and selling residential and commercial
-              properties
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-key"></i>
-            </div>
-            <h3>Property Rentals</h3>
-            <p>
-              Find the perfect rental property or manage your investment
-              properties
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Property Valuation</h3>
-            <p>Professional property appraisal and market analysis services</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-handshake"></i>
-            </div>
-            <h3>Investment Consulting</h3>
-            <p>Strategic advice for real estate investment opportunities</p>
-          </div>
-          <div class="service-card">
-  <div class="service-icon">
-    <i class="fas fa-building"></i>
-  </div>
-  <h3>Property Management</h3>
-  <p>
-    Comprehensive property management services for landlords and property investors
-  </p>
-</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>About DreamHome Realty</h2>
-            <p>
-              With over 15 years of experience in the real estate industry,
-              DreamHome Realty has helped thousands of families find their
-              perfect homes. Our team of dedicated professionals provides
-              personalized service and expert guidance throughout your real
-              estate journey.
-            </p>
-            <div class="stats">
-              <div class="stat">
-                <h3>2,500+</h3>
-                <p>Properties Sold</p>
-              </div>
-              <div class="stat">
-                <h3>98%</h3>
-                <p>Client Satisfaction</p>
-              </div>
-              <div class="stat">
-                <h3>15+</h3>
-                <p>Years Experience</p>
-              </div>
-            </div>
-          </div>
-          <div class="about-image">
-            <img
-              src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Real Estate Team"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-content">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Address</h4>
-                <p>123 Real Estate Ave, City, State 12345</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Phone</h4>
-                <p>+2349027033883</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>berryflezzyfrosh@gmail.com</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>Hours</h4>
-                <p>Mon - Fri: 9AM - 6PM<br />Sat - Sun: 10AM - 4PM</p>
-              </div>
-            </div>
-          </div>
-          <form class="contact-form" onsubmit="submitForm(event)">
-            <div class="form-group">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Your Phone"
-              />
-            </div>
-            <div class="form-group">
-              <select id="subject" name="subject" required>
-                <option value="">Select Subject</option>
-                <option value="buying">Buying Property</option>
-                <option value="selling">Selling Property</option>
-                <option value="renting">Renting Property</option>
-                <option value="valuation">Property Valuation</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <div class="logo">
-              <i class="fas fa-home"></i>
-              <span>DreamHome Realty</span>
-            </div>
-            <p>
-              Your trusted partner in finding the perfect home. We make real
-              estate dreams come true.
-            </p>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-          </div>
-          <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#properties">Properties</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-  <h4>Services</h4>
-  <ul>
-    <li><a href="#services" onclick="scrollToService('property-sales')">Property Sales</a></li>
-    <li><a href="#services" onclick="scrollToService('property-rentals')">Property Rentals</a></li>
-    <li><a href="#services" onclick="scrollToService('property-management')">Property Management</a></li>
-    <li><a href="#services" onclick="scrollToService('investment-consulting')">Investment Consulting</a></li>
-    <li><a href="#services" onclick="scrollToService('property-valuation')">Property Valuation</a></li>
-  </ul>
-</div>
-
-          <div class="footer-section">
-            <h4>Newsletter</h4>
-            <p>Subscribe to get updates on new properties and market trends.</p>
-            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-              <input type="email" placeholder="Your email address" required />
-              <button type="submit"><i class="fas fa-paper-plane"></i></button>
-            </form>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 DreamHome Realty. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Property Modal -->
-    <div id="property-modal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div id="modal-body">
-          <!-- Property details will be loaded here -->
-        </div>
-      </div>
     </div>
 
+    <!-- Verification Screen -->
+    <div id="verification-screen" class="screen">
+        <div class="verification-container">
+            <div class="back-button" id="back-btn">←</div>
+            <h2>Verifying your number</h2>
+            <p id="verification-text">We have sent an SMS with an activation code to your phone number.</p>
+            <div class="verification-input-container">
+                <input type="text" id="verification-code" placeholder="- - - - - -" maxlength="6">
+            </div>
+            <p class="resend-text">Didn't receive code? <span id="resend-link">Resend SMS</span></p>
+        </div>
+    </div>
+
+    <!-- Profile Setup Screen -->
+    <div id="profile-screen" class="screen">
+        <div class="profile-container">
+            <h2>Profile info</h2>
+            <p class="profile-subtitle">Please provide your name and an optional profile photo</p>
+            
+            <div class="profile-photo-container">
+                <div class="profile-photo" id="profile-photo">
+                    <svg viewBox="0 0 24 24" width="40" height="40">
+                        <path fill="#8696a0" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 13.5C14.8 13.8 14.3 14 14 14H10C9.7 14 9.2 13.8 9 13.5L3 7V9C3 10.1 3.9 11 5 11V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V11C20.1 11 21 10.1 21 9Z"/>
+                    </svg>
+                </div>
+                <input type="file" id="photo-input" accept="image/*" style="display: none;">
+            </div>
+            
+            <div class="name-input-container">
+                <input type="text" id="user-name" placeholder="Type your name here" maxlength="25">
+            </div>
+            
+            <div class="password-setup-container">
+                <input type="password" id="setup-password" placeholder="Create password" maxlength="50">
+                <input type="password" id="confirm-password" placeholder="Confirm password" maxlength="50">
+            </div>
+            
+            <button id="done-btn" class="done-button" disabled>DONE</button>
+        </div>
+    </div>
+
+    <!-- Main Chat List Screen -->
+    <div id="chat-list-screen" class="screen">
+        <div class="chat-header">
+            <div class="header-left">
+                <div class="user-avatar" id="current-user-avatar">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                        <path fill="#8696a0" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 13.5C14.8 13.8 14.3 14 14 14H10C9.7 14 9.2 13.8 9 13.5L3 7V9C3 10.1 3.9 11 5 11V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V11C20.1 11 21 10.1 21 9Z"/>
+                    </svg>
+                </div>
+                <div class="header-info">
+                    <h3 id="current-user-name">WhatsApp</h3>
+                    <p class="status">online</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="search-btn">🔍</button>
+                <button class="header-btn" id="new-group-btn">👥</button>
+                <button class="header-btn" id="menu-btn">⋮</button>
+            </div>
+        </div>
+        
+        <div class="search-container" id="search-container">
+            <input type="text" id="search-input" placeholder="Search contacts, groups...">
+        </div>
+        
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="chats">Chats</button>
+            <button class="tab-btn" data-tab="groups">Groups</button>
+            <button class="tab-btn" data-tab="channels">Channels</button>
+        </div>
+        
+        <div class="chat-list" id="chat-list">
+            <div class="no-chats">
+                <p>No contacts yet. Other users will appear here when they join.</p>
+            </div>
+        </div>
+        
+        <div class="floating-menu" id="floating-menu">
+            <button class="menu-item" id="edit-profile-btn">Edit Profile</button>
+            <button class="menu-item" id="create-group-btn">New Group</button>
+            <button class="menu-item" id="create-channel-btn">New Channel</button>
+            <button class="menu-item" id="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <!-- Individual Chat Screen -->
+    <div id="chat-screen" class="screen">
+        <div class="chat-header">
+            <div class="header-left">
+                <button class="back-btn" id="back-to-list">←</button>
+                <div class="user-avatar" id="chat-user-avatar">
+                    <svg viewBox="0 0 24 24" width="32" height="32">
+                        <path fill="#8696a0" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 13.5C14.8 13.8 14.3 14 14 14H10C9.7 14 9.2 13.8 9 13.5L3 7V9C3 10.1 3.9 11 5 11V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V11C20.1 11 21 10.1 21 9Z"/>
+                    </svg>
+                </div>
+                <div class="header-info">
+                    <h3 id="chat-user-name">User</h3>
+                    <p class="status" id="chat-user-status">online</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn">📹</button>
+                <button class="header-btn">📞</button>
+                <button class="header-btn">⋮</button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="welcome-message">
+                <p>Start your conversation!</p>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <button class="attachment-btn" id="attachment-btn">📎</button>
+            <input type="text" id="message-input" placeholder="Type a message">
+            <button class="send-btn" id="send-btn">➤</button>
+        </div>
+        
+        <input type="file" id="file-input" accept="image/*,video/*" multiple style="display: none;">
+    </div>
+
+    <!-- Group Creation Modal -->
+    <div id="group-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Group</h3>
+                <button class="close-btn" id="close-group-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="group-photo-container">
+                    <div class="group-photo" id="group-photo">
+                        <span>📷</span>
+                    </div>
+                    <input type="file" id="group-photo-input" accept="image/*" style="display: none;">
+                </div>
+                <input type="text" id="group-name" placeholder="Group name" maxlength="25">
+                <div class="participants-list" id="participants-list">
+                    <h4>Select participants:</h4>
+                </div>
+                <button id="create-group-btn-modal" class="create-btn" disabled>CREATE GROUP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Channel Creation Modal -->
+    <div id="channel-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Channel</h3>
+                <button class="close-btn" id="close-channel-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="channel-photo-container">
+                    <div class="channel-photo" id="channel-photo">
+                        <span>📺</span>
+                    </div>
+                    <input type="file" id="channel-photo-input" accept="image/*" style="display: none;">
+                </div>
+                <input type="text" id="channel-name" placeholder="Channel name" maxlength="25">
+                <textarea id="channel-description" placeholder="Channel description (optional)" maxlength="200"></textarea>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="channel-public"> Make channel public
+                </label>
+                <button id="create-channel-btn-modal" class="create-btn" disabled>CREATE CHANNEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="close-btn" id="close-edit-profile-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="edit-photo-container">
+                    <div class="edit-photo" id="edit-photo">
+                        <svg viewBox="0 0 24 24" width="40" height="40">
+                            <path fill="#8696a0" d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 13.5C14.8 13.8 14.3 14 14 14H10C9.7 14 9.2 13.8 9 13.5L3 7V9C3 10.1 3.9 11 5 11V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V11C20.1 11 21 10.1 21 9Z"/>
+                        </svg>
+                    </div>
+                    <input type="file" id="edit-photo-input" accept="image/*" style="display: none;">
+                </div>
+                <input type="text" id="edit-name" placeholder="Name" maxlength="25">
+                <button id="save-profile-btn" class="save-btn">SAVE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <div class="notification-avatar"></div>
+            <div class="notification-text">
+                <div class="notification-name"></div>
+                <div class="notification-message"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
