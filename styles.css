@@ -943,3 +943,44 @@ h2 {
         transform: translateY(-10px);
     }
 }
+
+/* Improve layout for tablets and desktops */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .login-container,
+    .verification-container,
+    .profile-container {
+        max-width: 90%;
+    }
+
+    .chat-header,
+    .chat-input-container,
+    .chat-list,
+    .chat-messages {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* Desktop layout improvements */
+@media (min-width: 1025px) {
+    .screen.active {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .chat-list,
+    .chat-messages {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .chat-input-container {
+        max-width: 50%;
+        margin: auto;
+    }
+
+    .modal-content {
+        width: 400px;
+    }
+}
