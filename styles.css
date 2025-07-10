@@ -337,6 +337,7 @@ h2 {
     background: #2a3942;
     padding: 10px 20px;
     display: none;
+    width: 100%;
 }
 
 .search-container.active {
