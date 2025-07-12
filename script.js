@@ -1133,3 +1133,196 @@ class WhatsAppChat {
 document.addEventListener('DOMContentLoaded', () => {
     new WhatsAppChat();
 });
+// === Global Chat JavaScript ===
+
+// Replace with your backend URL (must be public!)
+const API_BASE_URL = 'https://YOUR_BACKEND_URL/api';
+const SOCKET_URL = 'https://YOUR_BACKEND_URL';
+
+let socket = null;
+let currentUser = null;
+let currentChat = null;
+let chats = [];
+let messages = [];
+let typingTimeout = null;
+
+// App starts here
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuthState();
+});
+
+async function checkAuthState() {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+
+    if (token && userData) {
+        currentUser = JSON.parse(userData);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        showMainApp();
+        initializeSocket();
+    } else {
+        showAuthScreen();
+    }
+}
+
+function showAuthScreen() {
+    document.getElementById('authScreen').classList.remove('hidden');
+    document.getElementById('mainApp').classList.add('hidden');
+}
+
+function showMainApp() {
+    document.getElementById('authScreen').classList.add('hidden');
+    document.getElementById('mainApp').classList.remove('hidden');
+    document.getElementById('userName2').textContent = currentUser.name;
+    document.getElementById('userAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+    loadChats();
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    if (socket) socket.disconnect();
+    currentUser = null;
+    currentChat = null;
+    showAuthScreen();
+}
+
+function initializeSocket() {
+    socket = io(SOCKET_URL, {
+        auth: {
+            token: localStorage.getItem('token')
+        }
+    });
+
+    socket.on('connect', () => console.log('✅ Connected to Socket.IO'));
+    socket.on('disconnect', () => console.log('❌ Disconnected'));
+
+    socket.on('new_message', (message) => {
+        if (currentChat && message.chat === currentChat._id) {
+            addMessageToUI(message);
+            scrollToBottom();
+        }
+        updateChatInList(message);
+    });
+
+    socket.on('user_typing', (data) => {
+        if (currentChat && data.chatId === currentChat._id && data.userId !== currentUser.id) {
+            showTypingIndicator(data.isTyping);
+        }
+    });
+}
+
+async function loadChats() {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/chats`);
+        chats = response.data;
+        renderChatsList();
+    } catch (error) {
+        console.error('⚠️ Failed to load chats:', error);
+    }
+}
+
+function renderChatsList() {
+    const chatsList = document.getElementById('chatsList');
+    chatsList.innerHTML = chats.map(chat => {
+        const other = chat.participants.find(p => p.user._id !== currentUser.id)?.user;
+        const chatName = chat.type === 'private' ? other?.name : chat.name;
+        return `
+            <div class="chat-item" onclick="selectChat('${chat._id}')">
+                <div class="avatar">${chatName?.charAt(0).toUpperCase() || 'C'}</div>
+                <div class="chat-info">
+                    <div class="chat-name">${chatName}</div>
+                </div>
+            </div>`;
+    }).join('');
+}
+
+async function selectChat(chatId) {
+    currentChat = chats.find(c => c._id === chatId);
+    const other = currentChat.participants.find(p => p.user._id !== currentUser.id)?.user;
+    document.getElementById('chatName').textContent = other.name;
+    document.getElementById('chatAvatar').textContent = other.name.charAt(0).toUpperCase();
+    document.getElementById('noChatSelected').style.display = 'none';
+    document.getElementById('chatContainer').classList.remove('hidden');
+    renderChatsList();
+    socket.emit('join_chat', chatId);
+    await loadMessages(chatId);
+}
+
+async function loadMessages(chatId) {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/messages/chat/${chatId}`);
+        messages = response.data.messages;
+        renderMessages();
+        scrollToBottom();
+    } catch (error) {
+        console.error('⚠️ Failed to load messages:', error);
+    }
+}
+
+function renderMessages() {
+    const container = document.getElementById('messagesContainer');
+    container.innerHTML = messages.map(message => {
+        const isOwn = message.sender._id === currentUser.id;
+        return `
+            <div class="message ${isOwn ? 'own' : ''}">
+                <div class="message-bubble">
+                    <div>${message.content.text}</div>
+                </div>
+            </div>`;
+    }).join('');
+}
+
+function addMessageToUI(message) {
+    messages.push(message);
+    const container = document.getElementById('messagesContainer');
+    const isOwn = message.sender._id === currentUser.id;
+    container.insertAdjacentHTML('beforeend', `
+        <div class="message ${isOwn ? 'own' : ''}">
+            <div class="message-bubble">
+                <div>${message.content.text}</div>
+            </div>
+        </div>`);
+}
+
+function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const text = input.value.trim();
+    if (!text || !currentChat) return;
+
+    socket.emit('send_message', {
+        chatId: currentChat._id,
+        type: 'text',
+        content: { text: text }
+    });
+
+    input.value = '';
+}
+
+function handleTyping() {
+    if (!currentChat) return;
+    socket.emit('typing_start', currentChat._id);
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+        socket.emit('typing_stop', currentChat._id);
+    }, 1000);
+}
+
+function showTypingIndicator(isTyping) {
+    const indicator = document.getElementById('typingIndicator');
+    indicator.classList.toggle('hidden', !isTyping);
+}
+
+function scrollToBottom() {
+    const container = document.getElementById('messagesContainer');
+    container.scrollTop = container.scrollHeight;
+}
+
+function updateChatInList(message) {
+    const chatIndex = chats.findIndex(c => c._id === message.chat);
+    if (chatIndex !== -1) {
+        chats[chatIndex].lastMessage = message;
+        chats[chatIndex].lastActivity = message.createdAt;
+        renderChatsList();
+    }
+                }
