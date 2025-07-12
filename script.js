@@ -1335,14 +1335,25 @@ const firebaseConfig = {
   appId: "1:302937531249:web:3b9f960fea8495315d1b53",
   measurementId: "G-0T2ZNRH6NL"
 };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Save user profile to Firestore
+  function saveProfile(event) {
+    event.preventDefault();
+    const name = document.getElementById("display-name").value;
+    const phone = document.getElementById("phone-number").value;
+    
+    db.collection("users").doc(phone).set({
+      name: name,
+      phone: phone,
+      online: true,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      alert("Profile saved. You’re now visible to others!");
+      loadContacts();
+    });
+  }
 
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB3U7Vp-HzFxROhnTCu_EoqLv1bOiFhPNI",
-  authDomain: "tattoochat-demo.firebaseapp.com",
-  projectId: "tattoochat-demo",
-  storageBucket: "tattoochat-demo.appspot.com",
-  messagingSenderId: "302937531249",
-  appId: "1:302937531249:web:3b9f960fea8495315d1b53"
-};
