@@ -1336,41 +1336,8 @@ const firebaseConfig = {
   measurementId: "G-0T2ZNRH6NL"
 };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
 
-  // Save user profile to Firestore
-  function saveProfile(event) {
-    event.preventDefault();
-    const name = document.getElementById("display-name").value;
-    const phone = document.getElementById("phone-number").value;
-    
-    db.collection("users").doc(phone).set({
-      name: name,
-      phone: phone,
-      online: true,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-      alert("Profile saved. You’re now visible to others!");
-      loadContacts();
-    });
-  }
 
-  // Load contacts (other users)
-  function loadContacts() {
-    db.collection("users").onSnapshot(snapshot => {
-      const contactsList = document.getElementById("contacts-list");
-      contactsList.innerHTML = '';
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const contact = document.createElement("div");
-        contact.classList.add("contact-item");
-        contact.innerHTML = `<strong>${data.name}</strong><br><small>${data.phone}</small>`;
-        contactsList.appendChild(contact);
-      });
-    });
-  }
 const firebaseConfig = {
   apiKey: "AIzaSyB3U7Vp-HzFxROhnTCu_EoqLv1bOiFhPNI",
   authDomain: "tattoochat-demo.firebaseapp.com",
