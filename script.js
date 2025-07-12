@@ -1136,9 +1136,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // === Global Chat JavaScript ===
 
 // Replace with your backend URL (must be public!)
-const API_BASE_URL = 'https://YOUR_BACKEND_URL/api';
-const SOCKET_URL = 'https://YOUR_BACKEND_URL';
-
+const API_BASE_URL = 'https://tattoochat-demo.onrender.com/api';
+const SOCKET_URL = 'https://tattoochat-demo.onrender.com';
 let socket = null;
 let currentUser = null;
 let currentChat = null;
