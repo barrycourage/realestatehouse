@@ -6,9 +6,6 @@
     <title>Connexus</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <!-- Login Screen -->
@@ -250,7 +247,24 @@
             </div>
         </div>
     </div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB3U7Vp-HzFxROhnTCu_EoqLv1bOiFhPNI",
+    authDomain: "tattoochat-demo.firebaseapp.com",
+    projectId: "tattoochat-demo",
+    storageBucket: "tattoochat-demo.appspot.com",
+    messagingSenderId: "302937531249",
+    appId: "1:302937531249:web:3b9f960fea8495315d1b53"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
     <script src="script.js"></script>
 </body>
 </html>
