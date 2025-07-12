@@ -1354,5 +1354,31 @@ const firebaseConfig = {
       loadContacts();
     });
   }
+function saveUserToFirestore(phoneNumber, displayName) {
+  db.collection("users").doc(phoneNumber).set({
+    phone: phoneNumber,
+    name: displayName,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
 
-
+// Example
+auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+  .then(confirmationResult => {
+    // On success, collect code from user
+    // After verification and entering name:
+    saveUserToFirestore(phoneNumber, "John Doe");
+  });
+function listenToContacts() {
+  db.collection("users").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    const contactsList = document.getElementById("contacts-list");
+    contactsList.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement("div");
+      div.classList.add("contact-item");
+      div.innerHTML = `<strong>${data.name}</strong><br><small>${data.phone}</small>`;
+      contactsList.appendChild(div);
+    });
+  });
+}
